@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Title</title>
+    <h:outputStylesheet library="css" name="default.css"  />
+</h:head>
+<h:body>
+
+    <h:form styleClass="loginPanelStyle" onkeypress="if (event.keyCode == 13) submit();">
+        <p:growl id="msgs" showDetail="true" sticky="false" />
+        <p:panelGrid columns="2">
+            <f:facet name="header">
+                Login Panel
+            </f:facet>
+            <h:outputText value="Username : "></h:outputText>
+            <p:inputText id="username" value="#{loginController.username}" required="true" requiredMessage="Please Enter Username!" message="fc">
+                <f:validateLength minimum="1" />
+            </p:inputText>
+            <h:outputText value="Password : "></h:outputText>
+            <p:password id="password" value="#{loginController.password}" required="true" requiredMessage="Please Enter password!">
+                <f:validateLength minimum="1" />
+            </p:password>
+            <f:facet name="footer">
+                <p:defaultCommand target="login_button" />
+                <p:commandButton value="Submit" id="login_button" update="msgs" actionListener="#{loginController.login}" type="submit" icon="ui-icon-check" style="margin:0"></p:commandButton>
+            </f:facet>
+        </p:panelGrid>
+    </h:form>
+</h:body>
+</html>

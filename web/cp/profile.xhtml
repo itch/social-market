@@ -1,0 +1,33 @@
+<ui:composition template="/templates/cp_layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:define name="content">
+        <h:form id="updateUserForm">
+            <p:panelGrid id="displayUpdateUser" columns="2" cellpadding="4" style="margin:0 auto;">
+                <h:outputText value="Login :"></h:outputText>
+                <p:inputText value="#{cpProfileView.user.login}" required="true"
+                             requiredMessage="Please Enter Login!"/>
+
+                <h:outputText value="Name:"></h:outputText>
+                <p:inputText value="#{cpProfileView.user.name}" required="true"
+                             requiredMessage="Please Enter Name!"/>
+                <h:outputText value="Password:"></h:outputText>
+                <p:inputText value="#{cpProfileView.user.password}" required="true"
+                             requiredMessage="Please Enter Password!"/>
+
+
+                <f:facet name="footer">
+                    <p:commandButton value="Submit" update=":updateUserForm:displayUpdateUser, :growl"
+                                     actionListener="#{cpProfileView.doUpdateUser}"/>
+                    <p:commandButton type="reset" value="Reset"></p:commandButton>
+                </f:facet>
+            </p:panelGrid>
+        </h:form>
+        <p:growl id="growl" showDetail="true" life="5000" />
+    </ui:define>
+</ui:composition>
